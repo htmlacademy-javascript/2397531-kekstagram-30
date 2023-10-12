@@ -62,3 +62,5 @@ const createDescriptionsForPhoto = () =>
   });
 
 const DESCRIPTIONS = Array.from({length: 25}, createDescriptionsForPhoto);
+
+export {DESCRIPTIONS};
