@@ -1,2 +1,2 @@
-import 'get-random.js';
-import 'generate-description.js';
+import 'utils.js';
+import 'generate-photos.js';
