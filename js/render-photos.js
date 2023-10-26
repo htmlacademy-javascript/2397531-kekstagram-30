@@ -1,7 +1,9 @@
 import {photos} from './generate-photos.js';
+import {showBigPicture} from './big-picture.js';
 
 const pictures = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
+
 const renderPhoto = (photo) => {
   const pictureElement = pictureTemplate.cloneNode(true);
 
@@ -10,6 +12,13 @@ const renderPhoto = (photo) => {
   pictureElement.querySelector('.picture__likes').textContent = photo.likes;
   pictureElement.querySelector('.picture__comments').textContent = photo.comments.length;
 
+  const onPictureElementClick = (evt) => {
+    evt.preventDefault();
+
+    showBigPicture(photo);
+  };
+
+  pictureElement.addEventListener('click', onPictureElementClick);
   return pictureElement;
 };
 
