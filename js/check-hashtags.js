@@ -10,7 +10,6 @@ const uploadSubmitButton = document.querySelector('.img-upload__submit');
 let textError = '';
 
 const getMessageError = () => textError;
-const hashtagFormat = /^#[a-zа-яё0-9]{1-19}$/i;
 
 const pristine = new Pristine(form, {
   classTo: 'img-upload__field-wrapper',
@@ -60,7 +59,7 @@ const hashtagHandlers = (value) => {
       error: `Максимальная длина хэштега: ${HASHTAG_LENGTH} символов`
     },
     {
-      check: hashtagSplit.some((hashtag) => !hashtagFormat.test(hashtag)),
+      check: hashtagSplit.some((hashtag) => /^#[a-zа-яё0-9]{1-19}$/i.test(hashtag)),
       error: 'Хэштег содержит запрещенные символы'
     }
   ];
@@ -75,14 +74,10 @@ const hashtagHandlers = (value) => {
 
 };
 
-pristine.addValidator(inputHashtag, hashtagHandlers, getMessageError);
+pristine.addValidator(inputHashtag, hashtagHandlers, getMessageError, 2, false);
 
 const onHashtagInput = () => {
-  if (pristine.validate()) {
-    uploadSubmitButton.disabled = false;
-  } else {
-    uploadSubmitButton.disabled = true;
-  }
+  uploadSubmitButton.disabled = !pristine.validate();
 };
 
 inputHashtag.addEventListener('input', onHashtagInput);
