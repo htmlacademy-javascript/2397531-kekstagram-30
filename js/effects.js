@@ -20,7 +20,7 @@ const sliderElement = document.querySelector('.effect-level__slider');
 const sliderUpload = document.querySelector('.img-upload__effect-level');
 
 let currentEffect = '';
-effectLevelValue.value = 1;
+effectLevelValue.value = DEFAULT_VALUE;
 
 sliderUpload.classList.add('visually-hidden');
 
@@ -110,5 +110,16 @@ sliderElement.noUiSlider.on('change', () => {
 
   image.style.filter = effects[currentEffect.replace('effects__preview--','')]();
 });
+
+const resetEffects = () => {
+  effectLevelValue.value = DEFAULT_VALUE;
+  sliderUpload.classList.add('visually-hidden');
+  image.style.filter = 'none';
+  if (currentEffect !== '') {
+    image.classList.remove(currentEffect);
+  }
+};
+
+export {resetEffects};
 
 

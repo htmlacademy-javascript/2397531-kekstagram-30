@@ -1,4 +1,3 @@
-import {photos} from './generate-photos.js';
 import {showBigPicture} from './big-picture.js';
 
 const pictures = document.querySelector('.pictures');
@@ -31,7 +30,5 @@ const renderPhotos = (photosData) => {
 
   pictures.append(fragment);
 };
-
-renderPhotos(photos);
 
 export {renderPhoto, renderPhotos};
