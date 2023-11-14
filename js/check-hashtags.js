@@ -1,5 +1,3 @@
-import '../vendor/pristine/pristine.min.js';
-
 const MAX_HASHTAGS = 5;
 const HASHTAG_LENGTH = 20;
 
@@ -21,7 +19,6 @@ const pristine = new Pristine(form, {
 });
 
 const hashtagHandlers = (value) => {
-  textError = '';
   const hashtagString = value.toLowerCase().trim();
   const hashtagSplit = hashtagString.split(/\s+/);
 
@@ -59,7 +56,7 @@ const hashtagHandlers = (value) => {
       error: `Максимальная длина хэштега: ${HASHTAG_LENGTH} символов`
     },
     {
-      check: hashtagSplit.some((hashtag) => /^#[a-zа-яё0-9]{1-19}$/i.test(hashtag)),
+      check: hashtagSplit.some((hashtag) => !(/^#[a-zа-я0-9]{1,19}$/i.test(hashtag))),
       error: 'Хэштег содержит запрещенные символы'
     }
   ];
@@ -81,8 +78,5 @@ const onHashtagInput = () => {
 };
 
 inputHashtag.addEventListener('input', onHashtagInput);
-form.addEventListener('submit', (evt) => {
-  if (!pristine.validate()) {
-    evt.preventDefault();
-  }
-});
+
+export {pristine};
