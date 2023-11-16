@@ -91,12 +91,12 @@ const onScaleBiggerClick = () => {
 scaleControlSmaller.addEventListener('click', onScaleSmallerClick);
 scaleControlBigger.addEventListener('click', onScaleBiggerClick);
 
-const buttonSubmitIsDisabled = (boolean) => {
-  uploadSubmitButton.disabled = boolean;
+const buttonSubmitIsDisabled = () => {
+  uploadSubmitButton.disabled = !uploadSubmitButton.disabled;
 };
 
 const sendForm = async () => {
-  buttonSubmitIsDisabled(true);
+  buttonSubmitIsDisabled();
 
   if (!pristine.validate()) {
     return;
@@ -110,7 +110,7 @@ const sendForm = async () => {
   } catch (error) {
     showErrorFormMessage();
   } finally {
-    buttonSubmitIsDisabled(false);
+    buttonSubmitIsDisabled();
   }
 };
 

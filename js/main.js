@@ -4,11 +4,21 @@ import './check-hashtags.js';
 import './effects.js';
 import {getData} from './api.js';
 import {showAlertError} from './messages.js';
+import './filters.js';
+
+let photos = [];
 
 const loadPictures = async () => {
   await getData()
-    .then((data) => renderPhotos(data))
+    .then((data) => {
+      photos = data.slice();
+      renderPhotos(data);
+    })
+    .then(() => document.querySelector('.img-filters').classList.remove('img-filters--inactive'))
     .catch(() => showAlertError());
 };
 
 loadPictures();
+
+
+export {photos};
