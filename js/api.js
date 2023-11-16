@@ -10,7 +10,7 @@ const Route = {
   POST: '/'
 };
 
-const request = (url, method = HttpMethod.GET, body = null) =>
+const sendRequest = (url, method = HttpMethod.GET, body = null) =>
   fetch(`${url}${Route[method]}`, {
     method: method,
     body
@@ -25,8 +25,8 @@ const request = (url, method = HttpMethod.GET, body = null) =>
       throw new Error(error.status);
     });
 
-const getData = () => request(SERVER_URL);
+const getData = () => sendRequest(SERVER_URL);
 
-const sendData = (body) => request(SERVER_URL, HttpMethod.POST, body);
+const sendData = (body) => sendRequest(SERVER_URL, HttpMethod.POST, body);
 
 export {getData, sendData};
