@@ -5,6 +5,7 @@ import './effects.js';
 import {getData} from './api.js';
 import {showAlertError} from './messages.js';
 import './filters.js';
+import './img-upload.js';
 
 let photos = [];
 
