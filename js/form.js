@@ -21,7 +21,7 @@ const cancelUploadImg = document.querySelector('.img-upload__cancel');
 const scaleControlSmaller = document.querySelector('.scale__control--smaller');
 const scaleControlBigger = document.querySelector('.scale__control--bigger');
 const scaleControlValue = document.querySelector('.scale__control--value');
-const previewImg = document.querySelector('.img-upload__preview');
+const previewImg = document.querySelector('.img-upload__preview img');
 
 let scaleValue = DEFAULT_SCALE;
 
@@ -31,6 +31,7 @@ const resetForm = () => {
   previewImg.style.transform = `scale(${DEFAULT_TRANSFORM})`;
   scaleControlValue.value = `${DEFAULT_SCALE}%`;
   fileUpload.value = '';
+  pristine.reset();
 };
 
 const closeEditPhoto = () => {

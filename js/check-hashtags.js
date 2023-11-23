@@ -1,8 +1,10 @@
 const MAX_HASHTAGS = 5;
 const HASHTAG_LENGTH = 20;
+const MAX_COMMENT_LENGTH = 140;
 
 const form = document.querySelector('.img-upload__form');
 const inputHashtag = document.querySelector('.text__hashtags');
+const inputComment = document.querySelector('.text__description');
 const uploadSubmitButton = document.querySelector('.img-upload__submit');
 
 let textError = '';
@@ -11,10 +13,7 @@ const getMessageError = () => textError;
 
 const pristine = new Pristine(form, {
   classTo: 'img-upload__field-wrapper',
-  errorClass: 'img-upload__field-wrapper--invalid',
-  successClass: 'img-upload__field-wrapper--valid',
   errorTextParent: 'img-upload__field-wrapper',
-  errorTextTag: 'div',
   errorTextClass: 'img-upload__field-wrapper--error'
 });
 
@@ -73,10 +72,23 @@ const hashtagHandlers = (value) => {
 
 pristine.addValidator(inputHashtag, hashtagHandlers, getMessageError, 2, false);
 
-const onHashtagInput = () => {
+const validateComment = (value) => value.length < MAX_COMMENT_LENGTH;
+
+pristine.addValidator(inputComment, validateComment, `Длина комментария больше ${MAX_COMMENT_LENGTH} символов`);
+
+function checkValidate () {
   uploadSubmitButton.disabled = !pristine.validate();
+}
+
+const onHashtagInput = () => {
+  checkValidate();
+};
+
+const onCommentInput = () => {
+  checkValidate();
 };
 
 inputHashtag.addEventListener('input', onHashtagInput);
+inputComment.addEventListener('input', onCommentInput);
 
 export {pristine};
