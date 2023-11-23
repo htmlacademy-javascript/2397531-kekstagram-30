@@ -1,7 +1,5 @@
 const DEFAULT_DELAY = 500;
 
-const getRandomNum = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-const getRandomElementFromArray = (array) => array[getRandomNum(0, array.length - 1)];
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
 const debounce = (callback, timeoutDelay = DEFAULT_DELAY) => {
@@ -22,4 +20,4 @@ const shuffleArray = (array) => {
   return array;
 };
 
-export {getRandomNum, getRandomElementFromArray, isEscapeKey, debounce, shuffleArray};
+export {isEscapeKey, debounce, shuffleArray};
